@@ -1,0 +1,24 @@
+@import "./styles/dashboard.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  font-family: "Lexend", serif !important;
+}
+
+body,
+html {
+  overflow-x: hidden;
+  background-color: #f7f7f9a8;
+}
+
+.graph__container {
+  width: 100%;
+  height: 400px;
+  @include for_breakpoint(mobile) {
+    width: 90%;
+    height: 250px;
+  }
+}
