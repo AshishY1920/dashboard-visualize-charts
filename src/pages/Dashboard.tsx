@@ -3,6 +3,7 @@ import "../styles/dashboard.scss";
 import Graphs from "../components/Graphs";
 import { Button } from "@mui/material";
 import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 
 const responseTimes = {
   day_wise: [
@@ -67,80 +68,90 @@ const Dashboard = ({ data }: { data: { [key: string]: number } }) => {
           <Sidebar />
         </div>
         <div>
-          {/* Grid Row component starts here */}
-          <div className="bar__chart__grid__row">
-            <div>
-              <h3>Category Distribution</h3>
-              {/* Bar Chart */}
-              <div className="graph__container">
-                <Graphs title="Category Distribution" type="bar" data={data} />
-              </div>
-              {/* Bar Chart */}
-            </div>
-            <div>
-              <div className="filter__day__week">
-                <div>
-                  <h3>Response Time</h3>
-                </div>
-                <div>
-                  {FILTERS_ARR &&
-                    FILTERS_ARR?.map((i, index) => (
-                      <Button
-                        onClick={() => setActiveFilters(index)}
-                        className={`${
-                          activeFilters === index ? "active__filters" : ""
-                        }`}
-                      >
-                        {i}
-                      </Button>
-                    ))}
-                </div>
-              </div>
-              {/* Line Chart */}
-              <div className="graph__container">
-                <Graphs
-                  title={`${
-                    activeFilters === 0 ? "Daily" : "Weekly"
-                  } Response Times`}
-                  type="line"
-                  data={activeFilters === 0 ? dailyData : weeklyData}
-                />
-              </div>
-              {/* Line Chart */}
-            </div>
-          </div>
-          {/* Grid Row component ends here */}
+          {/* Header component */}
+          <Header />
+          {/* Header Component */}
 
-          {/* Grid Row component starts here */}
-          <div className="bar__chart__grid__row mt__x5">
-            <div>
-              <h3>User Satisfaction Based on Ratings</h3>
-              <div className="graph__container">
-                <Graphs type="pie" data={userSatisfaction} />
+          <div className="container__fluid">
+            {/* Grid Row component starts here */}
+            <div className="bar__chart__grid__row">
+              <div>
+                <h3>Category Distribution</h3>
+                {/* Bar Chart */}
+                <div className="graph__container">
+                  <Graphs
+                    title="Category Distribution"
+                    type="bar"
+                    data={data}
+                  />
+                </div>
+                {/* Bar Chart */}
+              </div>
+              <div>
+                <div className="filter__day__week">
+                  <div>
+                    <h3>Response Time</h3>
+                  </div>
+                  <div>
+                    {FILTERS_ARR &&
+                      FILTERS_ARR?.map((i, index) => (
+                        <Button
+                          onClick={() => setActiveFilters(index)}
+                          className={`${
+                            activeFilters === index ? "active__filters" : ""
+                          }`}
+                        >
+                          {i}
+                        </Button>
+                      ))}
+                  </div>
+                </div>
+                {/* Line Chart */}
+                <div className="graph__container">
+                  <Graphs
+                    title={`${
+                      activeFilters === 0 ? "Daily" : "Weekly"
+                    } Response Times`}
+                    type="line"
+                    data={activeFilters === 0 ? dailyData : weeklyData}
+                  />
+                </div>
+                {/* Line Chart */}
               </div>
             </div>
-            <div>
-              <h3>Distribution By Country</h3>
-              <div className="graph__container">
-                <Graphs
-                  type="bar"
-                  data={usageStatistics.by_country}
-                  title="Usage by Country"
-                />
+            {/* Grid Row component ends here */}
+
+            {/* Grid Row component starts here */}
+            <div className="bar__chart__grid__row mt__x5">
+              <div>
+                <h3>User Satisfaction Based on Ratings</h3>
+                <div className="graph__container">
+                  <Graphs type="pie" data={userSatisfaction} />
+                </div>
+              </div>
+              <div>
+                <h3>Distribution By Country</h3>
+                <div className="graph__container">
+                  <Graphs
+                    type="bar"
+                    data={usageStatistics.by_country}
+                    title="Usage by Country"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3>Distribution By Platform</h3>
+                <div className="graph__container">
+                  <Graphs
+                    type="pie"
+                    data={usageStatistics?.by_platform}
+                    title="Usage by Platform"
+                  />
+                </div>
               </div>
             </div>
-            <div>
-              <h3>Distribution By Platform</h3>
-              <div className="graph__container">
-                <Graphs
-                  type="pie"
-                  data={usageStatistics?.by_platform}
-                  title="Usage by Platform"
-                />
-              </div>
-            </div>
+            {/* Grid Row component ends here */}
           </div>
-          {/* Grid Row component ends here */}
         </div>
       </div>
     </Fragment>
