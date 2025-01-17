@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Fragment } from "react";
+import { useEffect, useRef, Fragment } from "react";
 import {
   Chart as ChartJS,
   BarElement,
